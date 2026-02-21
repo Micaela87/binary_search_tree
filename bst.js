@@ -1,6 +1,7 @@
 class BinarySearchTree {
     
     _root = null;
+    values = [];
     
     constructor() {}
     
@@ -56,6 +57,39 @@ class BinarySearchTree {
         }
         
         return null;
+    }
+
+    search(value, node) {
+        
+        if (node) {
+            
+            if (node.value === value) {
+                this.values.push(value);
+            }
+            
+            return this.search(value, node.left) && this.search(value, node.right);
+            
+        }
+        
+        return this.values;
+    }
+    
+    compareStructure(node1, node2) {
+        
+        if (!node1 && !node2) {
+            return true;
+        }
+        
+        if (!node1 || !node2) {
+            return false;
+        }
+        
+        if (node1.value !== node2.value) {
+            return false;
+        }
+            
+        return this.compareStructure(node1.left, node2.left) && this.compareStructure(node1.right, node2.right);
+
     }
     
     countMaxDepth(node) {
