@@ -19,6 +19,12 @@ class BinarySearchTree {
             this._root.left = node.left ? new Node(left) : node.left;
             return this._root;
         }
+
+        if (value > this.root.value) {
+            return this.insertRight(value, this.root.right);
+        }
+
+        return this.insertLeft(value, this.root.left);
     }
     
     insertLeft(value, node) {
